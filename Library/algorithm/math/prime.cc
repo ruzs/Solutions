@@ -12,6 +12,10 @@ inline auto primeList(int max_n) {
 	}
 	return r;
 }
+inline bool isPrime(int x) {
+	if (x % 2 == 0) return x == 2;
+	return !np[x>>1];
+}
 
 bool isPrime(int x) {
 	if (x % 2 == 0) return x == 2;
