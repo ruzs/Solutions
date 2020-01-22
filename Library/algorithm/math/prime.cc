@@ -5,7 +5,7 @@ bool np[N>>1];
 inline auto primeList(int max_n) {
 	vector<long long> r = {2};
 	long long i =1, j, k;
-	while(i+=2 <= max_n) {
+	while((i+=2) <= max_n) {
 		if (np[i>>1]) continue;
 		r.push_back(i);
 		for(j=i*i, k=i+i; j<=max_n; j+=k) np[j>>1] = 1;
