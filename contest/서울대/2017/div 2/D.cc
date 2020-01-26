@@ -3,19 +3,20 @@
 using namespace std;
 
 int d[5001];
-int dfs(int a, int h[], vector<int> g[]) {
+int dfs(int a, vector<int> g[]) {
 	int & ref = d[a];
 	if (ref != -1) return ref;
 
 	ref = 1;
 	for(int b : g[a]) {
-		if (h[b] > h[a]) {
-			ref = max(ref, dfs(b, h, g) + 1);
-		}
+		ref = max(ref, dfs(b, g) + 1);
 	}
 	return ref;
 }
 int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+
 	int n, m, h[5001];
 	vector<int> g[5001];
 
@@ -24,11 +25,13 @@ int main() {
 	while(m--) {
 		int a, b;
 		cin >> a >> b;
-		g[a].push_back(b);
-		g[b].push_back(a);
+		if (h[a] < h[b])
+			g[a].push_back(b);
+		else
+			g[b].push_back(a);
 	}
 	memset(d, -1, sizeof d);
 	for(int i =1; i<=n; ++i) {
-		cout << dfs(i, h, g) << '\n';
+		cout << dfs(i, g) << '\n';
 	}
 }
