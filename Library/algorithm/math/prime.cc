@@ -27,26 +27,26 @@ bool isPrime(int x) {
 
 //prime factorization
 auto getFactors(int x) {
-	map<int, int> factors;
+	map<int, int> r;
 	for(int i =2; i*i<=x; ++i) {
 		int c =0;
 		while(x % i == 0) c++, x /= i;
-		factors[i] = c;
+		if (c) r[i] = c;
 	}
-	if (x > 1) factors[x] = 1;
-	return factors;
+	if (x > 1) r[x] = 1;
+	return r;
 }
 
 //divisors
 auto getDivisors(int x) {
-	set<int> divisors;
+	set<int> r;
 	for(int i =2; i*i<=x; ++i) {
 		if (x % i == 0) {
-			divisors.insert(i);
-			divisors.insert(x / i);
+			r.insert(i);
+			r.insert(x / i);
 		}
 	}
-	return divisors;
+	return r;
 }
 
 //Euler phi function, phi(x) = x보다 작은 서로소의 개수
