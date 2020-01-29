@@ -3,11 +3,9 @@
 using namespace std;
 
 int main() {
-	int n, m;
-	char s[1001];
-
-	cin >> n >> m;
-	for(int i =0; i<n; ++i) {
-		cin >>
-	}
+	int n; cin >> n;
+	string a, b;
+	cin >> a >> b;
+	vector<int> v(n);
+	for(int i =0; i<n; ++i) v[i] = a[i] != b[i];
 }
