@@ -1,3 +1,4 @@
-t.in
+.gitignore
 *.exe
+t.in
 *.html
