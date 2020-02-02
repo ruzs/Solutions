@@ -1,9 +1,6 @@
-#define N 100005
 struct dsu {
-	int a[N];
-	void init() {
-		memset(a, -1, sizeof a);
-	}
+	int a[100005];
+	dsu() { memset(a, -1, sizeof a); }
 	int find(int u) {
 		return a[u] < 0 ? u : a[u] = find(a[u]);
 	}
@@ -11,8 +8,11 @@ struct dsu {
 		return -a[find(u)];
 	}
 	int merge(int u, int v) {
-		u = find(u); v = find(v);
-		if (u != v) a[u] += a[v], a[v] = u;
+		u = find(u);
+		v = find(v);
+		if (u == v) return 0;
+		a[u] += a[v];
+		a[v] = u;
 		return -a[u];
 	}
 };

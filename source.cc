@@ -1,19 +1,35 @@
 #include <bits/stdc++.h>
-
+ 
 using namespace std;
-
-int main() {
-	int n, a[20];
-	long long sum =0, ans = 1e9;
-	cin >> n;
-	for(int i =0; i<n; ++i) cin >> a[i], sum += a[i];
-	int all = (1 << n) - 1;
-	for(int s = 0; s<=all; ++s) {
-		long long cnt =0;
-		for(int i =0; i<n; ++i) {
-			if (s & (1 << i)) cnt += a[i];
+ 
+void solve() {
+	deque<int> dq;
+	int n, m, k;
+	cin >> n >> m >> k;
+	dq.resize(n);
+	for(int & i : dq) cin >> i;
+	for(int i =1; i<m; ++i) {
+		if (k) {
+			if (dq.front() > dq.back()) dq.pop_back();
+			else if (dq.front() < dq.back()) dq.pop_front();
+			else {
+				if (dq.size() > 2 && dq[1] > dq[dq.size() - 2])
+					dq.pop_back();
+				else dq.pop_front();
+			}
+			k--;
 		}
-		ans = min(ans, abs(sum - cnt - cnt));
+		else {
+			if (dq.front() < dq.back()) dq.pop_back();
+			else dq.pop_front();
+		}
 	}
-	cout << ans;
+	cout << max(dq.front(), dq.back()) << '\n';
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+ 
+	int T; cin >> T;
+	while(T--) solve();
 }
