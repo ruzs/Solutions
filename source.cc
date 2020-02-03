@@ -1,8 +1,12 @@
-#include<cstdio>
+#include <bits/stdc++.h>
+
+using namespace std;
+
 int main() {
-	int a, b;
-	scanf("%d%d", &a, &b);
-	if (a == 2 && b == 18) puts("Special");
-	else if (a == 1 || a == 2 && b < 18) puts("Before");
-	else puts("After");
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+
+	int n, a[8] = {2,1,2,3,4,5,4,3};
+	cin >> n;
+	cout << a[n % 8];
 }
