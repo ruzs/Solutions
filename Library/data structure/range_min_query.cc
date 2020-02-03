@@ -18,4 +18,4 @@ struct rmq {
 		}
 		return r;
 	}
-};
+} rm;

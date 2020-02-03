@@ -4,15 +4,9 @@ struct dsu {
 	int find(int u) {
 		return a[u] < 0 ? u : a[u] = find(a[u]);
 	}
-	int size(int u) {
-		return -a[find(u)];
-	}
-	int merge(int u, int v) {
-		u = find(u);
-		v = find(v);
-		if (u == v) return 0;
+	void merge(int u, int v) {
+		u = find(u); v = find(v);
 		a[u] += a[v];
 		a[v] = u;
-		return -a[u];
 	}
-};
+} ds;
