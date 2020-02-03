@@ -1,13 +1,8 @@
-#define N 1000 	//최대개수
-#define L 20	//최대길이
-#define A 26	//알파벳사이즈
 struct Trie {
+	#define N 1000 	//최대개수
+	#define L 20	//최대길이
+	#define A 26	//알파벳사이즈
 	int a[N * L + 1][A], x[N * L + 1], n = 0;
-	void init() {
-		memset(a, 0, sizeof a);
-		memset(x, 0, sizeof x);
-		n = 0;
-	}
 	int find(char* s, bool i) {
 		int p = 0;
 		while(*s) {
