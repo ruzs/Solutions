@@ -53,8 +53,9 @@ auto getDivisors(int x) {
 int getEulerPhi(int x) {
 	int phi = x;
 	for(int i =2; i*i<=x; ++i) {
-		if (x % i == 0) phi /= i, phi *= i - 1;
+		if (x % i == 0) phi = phi / i * (i - 1);
 		while(x % i == 0) x /= i;
 	}
+	if (x > 1) phi = phi / x * (x - 1);
 	return phi;
 }
