@@ -23,9 +23,9 @@ struct rmq {
 		for(int i =0; i<_n; ++i) a[i + n] = _a[i];
 		for(int i =n -1; i; --i) a[i] = min(a[i<<1], a[i<<1|1], Comp());
 	}
-	void update(int p, int x) {
+	void update(int p, T x) {
 		a[p += n] = x;
-		while(p >>= 1) a[p] = min(a[p<<1], a[p<<1|1]);
+		while(p >>= 1) a[p] = min(a[p<<1], a[p<<1|1], Comp());
 	}
 	T query(int s, int e) {
 		T r = min(a[s += n], a[e += n], Comp());
@@ -36,7 +36,7 @@ struct rmq {
 		}
 		return r;
 	}
-} rm;
+};
 
 // if there a log of query...
 // O(n lg n + Q), preprocess: O(n lg n), for each query: O(1)
@@ -53,4 +53,4 @@ struct rmq {
 		int d = 31 - __builtin_clz(e - s + 1);
 		return min(a[d][s], a[d][e - (1<<d) + 1], Comp());
 	}
-} rm;
+};
