@@ -16,7 +16,6 @@ struct rmq {
 		while(p >>= 1) a[p] = min(a[p<<1], a[p<<1|1], Comp());
 	}
 	T query(int s, int e) {
-		if (s > e) return {0, 0};
 		T r = min(a[s += n], a[e += n], Comp());
 		while(s <= e) {
 			if (s % 2 == 1) r = min(r, a[s++], Comp());
@@ -31,7 +30,7 @@ int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 
-	rmq<pair<int, int>, greater<pair<int, int>>> rm;
+	rmq<pair<int, int>> rm;
 
 	int n, a, b, c;
 	cin >> n;
@@ -43,9 +42,6 @@ int main() {
 	while(n--) {
 		cin >> a >> b >> c;
 		if (a == 1) rm.update(b, {c, b});
-		else {
-			auto r = rm.query(b, c);
-			cout << r.first + max(rm.query(b, r.second - 1), rm.query(r.second + 1, c)).first << '\n';
-		}
+		else cout << rm.query(b, c).second << '\n';
 	}
 }
