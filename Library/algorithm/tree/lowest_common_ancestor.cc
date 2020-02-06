@@ -4,7 +4,7 @@ int p[1<<N][N], h[1<<N] = {0,1};
 vector<int> g[1<<N];
 
 void preproc(int a) {
-	for(int b : g[a]) if (!h[b]) {
+	for(int b : g[a]) if (b != p[a][0]) {
 		h[b] = h[a] + 1;
 		p[b][0] = a;
 		for(int j =1; j<N; ++j)

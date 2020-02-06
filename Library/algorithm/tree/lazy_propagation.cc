@@ -1,7 +1,7 @@
 #define N 1 << 17
 
-#define LEFT n<<1,l,(l+r)>>1
-#define RIGHT (n<<1)+1,((l+r)>>1)+1,r
+#define LEFT n<<1,l,l+r>>1
+#define RIGHT n<<1|1,(l+r>>1)+1,r
 
 long long tree[N << 1], lazy[N << 1];
 
