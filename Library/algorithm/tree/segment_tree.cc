@@ -1,5 +1,5 @@
+#define N 1<<20
 struct segment_tree {
-	#define N 1<<20
 	int a[N<<1];
 	void init(int * b, int n) {
 		for(int i =0; i<N; ++i) a[i + N] = b[i];
@@ -12,8 +12,8 @@ struct segment_tree {
 	auto query(int s, int e) {
 		int r = 0;
 		while(s <= e) {
-			if (s % 2 == 1) r = r, a[s++];
-			if (e % 2 == 0) r = r, a[e--];
+			if (s % 2 == 1) r += a[s++];
+			if (e % 2 == 0) r += a[e--];
 			s >>= 1; e >>= 1;
 		}
 		return r;

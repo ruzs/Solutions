@@ -4,9 +4,13 @@ struct dsu {
 	int find(int u) {
 		return a[u] < 0 ? u : a[u] = find(a[u]);
 	}
-	void merge(int u, int v) {
-		u = find(u); v = find(v);
-		a[u] += a[v];
-		a[v] = u;
+	int merge(int u, int v) {
+		u = find(u);
+		v = find(v);
+		if (u != v) {
+			a[u] += a[v];
+			a[v] = u;
+		}
+		return u;
 	}
 } ds;
