@@ -1,6 +1,7 @@
 #define N 100005
 
 vector<pair<int, int>> g[N];
+
 auto dijkstra(int src) {
 	priority_queue<pair<int, int>> pq;
 	vector<int> d(N, 1e9);

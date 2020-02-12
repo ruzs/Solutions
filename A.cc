@@ -3,14 +3,17 @@
 using namespace std;
 
 void solve() {
-	int n, a, s = 0, cnt = 0;
-	cin >> n;
-	for(int i =0; i<n; ++i) {
-		cin >> a;
-		s += a;
-		if (!a) cnt++, s++;
+	string s;
+	cin >> s;
+	int ans = 0, cnt = -1;
+	for(char c : s) {
+		if (c == '1') {
+			if (cnt >= 0) ans += cnt;
+			cnt = 0;
+		}
+		else if (cnt >= 0) cnt++;
 	}
-	cout << (s ? cnt : cnt + 1) << '\n';
+	cout << ans << '\n';
 }
 int main() {
 	ios::sync_with_stdio(0);
