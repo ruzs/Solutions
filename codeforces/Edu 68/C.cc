@@ -5,13 +5,13 @@ using namespace std;
 void solve() {
 	string s, t, p;
 	cin >> s >> t >> p;
-	map<char, int> mp;
-	for(char c : p) mp[c]++;
+	int cnt[26]{};
+	for(char c : p) cnt[c - 'a']++;
 	int j = 0;
 	for(int i =0; i<s.size(); ++i) {
 		while (j < t.size() && s[i] != t[j]) {
-			if (mp[t[j]]) {
-				mp[t[j++]]--;
+			if (cnt[t[j]]) {
+				cnt[t[j++]]--;
 			}
 			else {
 				cout << "NO\n";
@@ -25,14 +25,14 @@ void solve() {
 		if (s[i] == t[j]) j++;
 	}
 	while (j < t.size()) {
-			if (mp[t[j]]) {
-				mp[t[j++]]--;
-			}
-			else {
-				cout << "NO\n";
-				return;
-			}
+		if (cnt[t[j]]) {
+			cnt[t[j++]]--;
 		}
+		else {
+			cout << "NO\n";
+			return;
+		}
+	}
 	cout << "YES\n";
 }
 int main() {
