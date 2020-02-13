@@ -1,10 +1,17 @@
-#define N 100005
+#include <bits/stdc++.h>
 
-vector<pair<int, int>> g[N];
+/*------------------------------------------
 
-auto dijkstra(int src) {
+	Dijkstra's algorithm
+	
+input : graph that doesn't include negative weight ( ~200000 adjacent list )
+output: shortest dist from source
+
+------------------------------------------*/
+
+auto dijkstra(vector<vector<pair<int, int>>>& g, int src) {
 	priority_queue<pair<int, int>> pq;
-	vector<int> d(N, 1e9);
+	vector<int> d(g.size(), 1e9);
 
 	pq.push({ 0, src });
 	d[src] = 0;

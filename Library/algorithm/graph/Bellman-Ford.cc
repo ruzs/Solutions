@@ -1,9 +1,17 @@
-#define N 10005
+#include <bits/stdc++.h>
 
-vector<pair<int, int>> g[N];
+/*------------------------------------------
+	Bellman-Ford algorithm
+	
+input : graph ( ~10000 adjacent list )
+output: shortest dist from source
++ find negative cycle
 
-auto bellman_ford(int n, int src) {
-	vector<int> d(N, 1e9), minusCycle = {-1};
+------------------------------------------*/
+
+auto bellman_ford(vector<vector<pair<int, int>>>& g, int src) {
+	int n = g.size();
+	vector<int> d(n, 1e9), minusCycle = {-1};
 	d[src] = 0;
 
 	for(int i =1; i<=n; ++i) {

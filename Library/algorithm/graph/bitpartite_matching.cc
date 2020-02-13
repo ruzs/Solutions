@@ -1,3 +1,4 @@
+#include <bits/stdc++.h>
 #define N 1000
 
 int mat[N];

@@ -1,11 +1,17 @@
-#define N 200
+#include <bits/stdc++.h>
 
-void floyed_warshall(int n, int* g[N]) {
-	for(int k =0; k<n; ++k) {
-		for(int i =0; i<n; ++i) {
-			for(int j =0; j<n; ++j) {
-				g[i][j] = min(g[i][j], g[i][k] + g[k][j]);
-			}
-		}
-	}
+/*------------------------------------------
+
+	Floyd-Warshall algorithm
+	
+input : graph ( 200 x 200 adjacent matrix )
+proc  : making all pair shortest path
+output: void
+
+------------------------------------------*/
+
+void floyed_warshall(vector<vector<int>>& g) {
+	int n = g.size();
+	for(int k =0; k<n; ++k) for(int i =0; i<n; ++i) for(int j =0; j<n; ++j) {
+		g[i][j] = min(g[i][j], g[i][k] + g[k][j]);
 }
