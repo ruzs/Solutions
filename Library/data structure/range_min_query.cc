@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+
 // USAGE
 
 // 1. range_minimum_query

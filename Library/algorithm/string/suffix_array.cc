@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+
 auto suffixArray(const string& s) {
 	int n = s.size(), d = 1;
 	vector<int> sa(n), g(n);

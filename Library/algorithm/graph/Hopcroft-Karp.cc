@@ -4,8 +4,8 @@
 
 	Hopcroft-Karp algorithm
 	
-input : bipartite graph
-output: maximum matching
+input	: bipartite graph
+output	: maximum matching
 
 ------------------------------------*/
 

@@ -1,20 +1,20 @@
+#include <bits/stdc++.h>
+
 struct LCA {
 	#define N 17
 	int p[1<<N][N], h[1<<N];
-	vector<int> * g;
-	void init(vector<int> *_g, int _r) {
-		g = _g;
-		h[_r] = 1;
-		preproc(_r);
-	}
-	void preproc(int a) {
-		for(int b : g[a]) if (b != p[a][0]) {
-			h[b] = h[a] + 1;
-			p[b][0] = a;
-			for(int j =1; j<N; ++j)
-				p[b][j] = p[p[b][j - 1]][j - 1];
-			preproc(b);
-		}
+	void init(vector<vector<int>>& g, int r) {
+		h[r] = 1;
+		function<void(int)> preproc = [&](int a) {
+			for(int b : g[a]) if (b != p[a][0]) {
+				h[b] = h[a] + 1;
+				p[b][0] = a;
+				for(int j =1; j<N; ++j)
+					p[b][j] = p[p[b][j - 1]][j - 1];
+				preproc(b);
+			}
+		};
+		preproc(r);
 	}
 	int find(int a, int b) {
 		if (h[a] > h[b]) swap(a, b);

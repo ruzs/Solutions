@@ -4,8 +4,8 @@
 
 	Dijkstra's algorithm
 	
-input : graph that doesn't include negative weight ( ~200000 adjacent list )
-output: shortest dist from source
+input	: graph that doesn't include negative weight ( ~200000 adjacent list )
+output	: shortest dist from source
 
 ------------------------------------------*/
 

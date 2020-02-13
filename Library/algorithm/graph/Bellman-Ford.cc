@@ -3,8 +3,8 @@
 /*------------------------------------------
 	Bellman-Ford algorithm
 	
-input : graph ( ~10000 adjacent list )
-output: shortest dist from source
+input	: graph ( ~10000 adjacent list )
+output	: shortest dist from source
 + find negative cycle
 
 ------------------------------------------*/

@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+
 auto getPi(string& p) {
 	vector<int> r(p.size());
 	for (int i = 1, j = 0; i < p.size(); ++i) {

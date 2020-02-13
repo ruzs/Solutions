@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+
 //eratosthenes's sieve
 const int N = 1e7+5;
 

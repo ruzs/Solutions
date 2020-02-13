@@ -4,9 +4,8 @@
 
 	Floyd-Warshall algorithm
 	
-input : graph ( 200 x 200 adjacent matrix )
-proc  : making all pair shortest path
-output: void
+input	: graph ( 200 x 200 adjacent matrix )
+proc 	: making all pair shortest path
 
 ------------------------------------------*/
 
