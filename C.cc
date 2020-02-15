@@ -2,22 +2,27 @@
 
 using namespace std;
 
+struct customer {
+	int t, l, h;
+} a[101];
+
+int n, m;
+bool go(int i, int m) {
+	if (a[i].l > m || a[i].h < m) return 0;
+	if (i == n) return 1;
+	int d = a[i + 1].t - a[i].t;
+	if (go(i + 1, m + d)) 
+	return 0;
+}
+void solve() {
+	cin >> n >> m;
+	for(int i =1; i<=n; ++i) cin >> a[i].t >> a[i].l >> a[i].h;
+	
+}
 int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 
-	int n, k, a[300005];
-	cin >> n >> k;
-	for(int i =0; i<n; ++i) cin >> a[i];
-	priority_queue<pair<int, int>> pq;
-	for(int i =1; i<n; ++i) pq.push({a[i] - a[i - 1], i});
-	long long ans =0;
-	vector<int> s = {0};
-	while(--k && pq.size()) s.push_back(pq.top().second), pq.pop();
-	sort(s.begin(), s.end());
-	for(int i =1; i<s.size(); ++i) {
-		ans += a[s[i] - 1] - a[s[i - 1]];
-	}
-	ans += a[n - 1] - a[s.back()];
-	cout << ans;
+	int T, t =0; cin >> T;
+	while(++t <= T) solve();
 }

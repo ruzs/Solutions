@@ -3,12 +3,12 @@
 using namespace std;
 
 void solve() {
-	int n;
-	cin >> n;
-	vector<int> a(n);
-	for(int & i : a) cin >> i;
-	sort(a.begin(), a.end());
-	cout << min(a[a.size() - 2] - 1, n - 2) << '\n';
+	int x, y, a, b;
+	cin >> x >> y >> a >> b;
+	if ((y - x) % (b + a) == 0) {
+		cout << (y - x) / (b + a) << '\n';
+	}
+	else cout << "-1\n";
 }
 int main() {
 	ios::sync_with_stdio(0);
