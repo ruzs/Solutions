@@ -3,6 +3,7 @@
 using namespace std;
 
 void solve() {
+<<<<<<< HEAD
 	int n, m, a, s = 0;
 	cin >> n >> m >> a;
 	s += a;
@@ -13,6 +14,14 @@ void solve() {
 		m -= x * i;
 	}
 	cout << s << '\n';
+=======
+	int x, y, a, b;
+	cin >> x >> y >> a >> b;
+	if ((y - x) % (b + a) == 0) {
+		cout << (y - x) / (b + a) << '\n';
+	}
+	else cout << "-1\n";
+>>>>>>> ef72632469cae9f198d75202044b6e0cfa8dcd9e
 }
 int main() {
 	ios::sync_with_stdio(0);
