@@ -5,7 +5,6 @@ using namespace std;
 const int N = 1e5+5, M = 1e9+7;
 bool F[] = { ios::sync_with_stdio(0), cin.tie(0) };
 
-
 int n, k, a, b, c[N], d[N][4];
 vector<int> g[N];
 
