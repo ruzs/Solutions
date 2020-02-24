@@ -1,6 +1,12 @@
-struct dsu {
-	int a[100005];
-	dsu() { memset(a, -1, sizeof a); }
+#include<bits/stdc++.h>
+
+
+
+struct disjoint_set {
+	vector<int> a;
+	disjoint_set(int n) {
+		a.assign(n, -1);
+	}
 	int find(int u) {
 		return a[u] < 0 ? u : a[u] = find(a[u]);
 	}
@@ -13,4 +19,4 @@ struct dsu {
 		}
 		return u;
 	}
-} ds;
+};

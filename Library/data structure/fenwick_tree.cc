@@ -1,12 +1,26 @@
-struct fwt {
-	#define N 100005
-	int a[N];
-	void add(int p, int x) {
-		while(p < N) a[p] += x, p += p & -p;
+#include<bits/stdc++.h>
+
+
+
+template <typename T>
+struct fenwick {
+	vector<T> a;
+	int n;
+	fenwick(int _n) : n(_n) {
+		a.resize(n);
 	}
-	auto sum(int p) {
-		int r = a[p];
-		while(p -= p & -p) r += a[p];
+	void add(int p, T x) {
+		while(p < n) {
+			a[p] += x;
+			p += p & -p;
+		}
+	}
+	T sum(int p) {
+		T r{};
+		while(p) {
+			r += a[p];
+			p -= p & -p;
+		}
 		return r;
 	}
-} fw;
+};

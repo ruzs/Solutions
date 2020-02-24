@@ -3,42 +3,36 @@
 using namespace std;
 
 auto fio = ios::sync_with_stdio(0);
-
-template<class T, class Comp = less<T>>
-struct rmq {
-	T a[1<<18];
-	int n;
-	void init(int _n, T *_a) {
-		n = 1 << 32 - __builtin_clz(_n);
-		for(int i =0; i<_n; ++i) a[i + n] = _a[i];
-		for(int i =n -1; i; --i) a[i] = min(a[i<<1], a[i<<1|1], Comp());
+template <class T, class Comp = less<T>>
+struct range_min {
+	vector<vector<T>> a;
+	range_min(const vector<T>& _a) {
+		int d = 32 - __builtin_clz(_a.size());
+		a.resize(d, vector<T>(1 << d));
+		copy(_a.begin(), _a.end(), a[0].begin());
+		for (int i = 0; i < d - 1; ++i)
+			for (int j = 0; j < (int)_a.size(); ++j)
+				a[i + 1][j] = min(a[i][j], a[i][min((int)_a.size() - 1, j + (1 << i))], Comp());
 	}
 	T query(int s, int e) {
-		T r = min(a[s += n], a[e += n], Comp());
-		while(s <= e) {
-			if (s % 2 == 1) r = min(r, a[s++], Comp());
-			if (e % 2 == 0) r = min(r, a[e--], Comp());
-			s >>= 1; e >>= 1;
-		}
-		return r;
+		int d = 31 - __builtin_clz(e - s + 1);
+		return min(a[d][s], a[d][e - (1 << d) + 1], Comp());
 	}
 };
-
 int main() {
-	int n, a[100005], b[100005];
+	int n;
 	long long m;
-	rmq<int, greater<int>> rm;
-
 	cin >> n >> m;
+	vector<int> a(n), b(n);
 	for(int i =0; i<n; ++i) cin >> a[i] >> b[i];
-	rm.init(n, b);
+	range_min<int, greater<int>> rmq(b);
 
 	long long ps = 0;
 	int ans = 1e9;
 	for(int i =0, j =0; i<n; ++i) {
 		ps += a[i];
 		while (ps >= m) {
-			ans = min(ans, rm.query(j, i));
+			ans = min(ans, rmq.query(j, i));
 			ps -= a[j++];
 		}
 	}
