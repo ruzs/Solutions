@@ -2,31 +2,23 @@
 
 using namespace std;
 
-void solve() {
-<<<<<<< HEAD
-	int n, m, a, s = 0;
-	cin >> n >> m >> a;
-	s += a;
-	for(int i =1; i<n; ++i) {
-		cin >> a;
-		int x = min(m, a * i) / i;
-		s += x;
-		m -= x * i;
+int w[][3] = {{1,0,0},{0,1,0},{0,0,1},{1,1,0},{1,0,1},{0,1,1},{1,1,1}};
+int go(int a, int b, int c, int n) {
+	if (a < 0 || b < 0 || c < 0) return -1e9;
+	if (n == 7) return 0;
+	int res = 0;
+	for(int i =n; i<7; ++i) {
+		res = max(res, go(a - w[i][0], b - w[i][1], c - w[i][2], i + 1) + 1);
 	}
-	cout << s << '\n';
-=======
-	int x, y, a, b;
-	cin >> x >> y >> a >> b;
-	if ((y - x) % (b + a) == 0) {
-		cout << (y - x) / (b + a) << '\n';
-	}
-	else cout << "-1\n";
->>>>>>> ef72632469cae9f198d75202044b6e0cfa8dcd9e
+	return res;
+}
+void test() {
+	int a, b, c;
+	cin >> a >> b >> c;
+	cout << go(a, b, c, 0) << '\n';
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-
-	int T, t =0; cin >> T;
-	while(++t <= T) solve();
+	int t;
+	cin >> t;
+	while(t--) test();
 }
