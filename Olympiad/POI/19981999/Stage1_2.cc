@@ -9,7 +9,6 @@ int main() {
 	for(int i =1, j =1; i<=11111111; i=i*10+1,j++) d[j].insert(k * i);
 	for(int i =2; i<=8; ++i) {
 		for(int j =1; j<=i/2; ++j) {
-			trace(j, i - j, d[j].size(), d[i - j].size());
 			for(int x : d[j]) {
 				for(int y : d[i - j]) {
 					d[i].insert(x - y);
