@@ -20,13 +20,11 @@ int main() {
 		}
 		vector<int> v(m, -1);
 		v[h] = 0;
-		for(int i =x; i<n; ++i) {
+		for(int i =x; i<n; i += x) {
 			h = (h - (s[i - x] - 'a' + 1) * p % m + m) % m;
 			h = (h * 31 + (s[i] - 'a' + 1)) % m;
-			if (~v[h]) {
-				if (equal(s.begin() + v[h], s.begin() + v[h] + x, s.begin() + i - x + 1))
-					return 1;
-			}
+			if (~v[h] && equal(s.begin() + v[h], s.begin() + v[h] + x, s.begin() + i - x + 1))
+				return 1;
 			v[h] = i - x + 1;
 		}
 		return 0;
