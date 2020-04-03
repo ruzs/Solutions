@@ -8,13 +8,10 @@ int main() {
 
 	string a, b;
 	cin >> a >> b;
-	sort(a.begin(), a.end());
-	sort(b.begin(), b.end());;
-	int i = 0, j = 0, cnt = 0;
-	while (i<a.size() && j<b.size()) {
-		while (i<a.size() && a[i] < b[j]) cnt++, i++;
-		while (j<b.size() && a[i] > b[j]) cnt++, j++;
-		if (i<a.size() && j<b.size() && a[i] == b[j]) i++, j++;
-	}
-	cout << cnt + a.size() - i + b.size() - j;
+	vector<int> ab(26);
+	for(char c : a) ab[c - 'a']++;
+	for(char c : b) ab[c - 'a']--;
+	int ans = 0;
+	for(int i : ab) ans += abs(i);
+	cout << ans;
 }
