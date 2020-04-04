@@ -8,11 +8,11 @@ int main() {
 
 	int n;
 	cin >> n;
-	int r = 1;
-	for(int i =1; i<=n; ++i) {
-		r *= i;
-		while(r % 10 == 0) r /= 10;
-		r %= 100000;
+	long long x =1;
+	for(long long i =1; i<=n; ++i) {
+		x *= i;
+		while(x % 10 == 0) x /= 10;
+		x %= 1000000000ll;
 	}
-	cout << r % 10;
+	cout << x % 10;
 }
