@@ -10,7 +10,7 @@ int main() {
     cin >> n;
     vector<int> a(n);
     for(int & i : a) cin >> i;
-    if (next_permutation(a.begin(), a.end())) {
+    if (prev_permutation(a.begin(), a.end())) {
         for(int i : a) cout << i << ' ';
     } else {
         cout << -1;
