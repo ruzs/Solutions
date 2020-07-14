@@ -8,29 +8,31 @@ int main() {
 
     int n, m;
     cin >> n >> m;
-    vector<string> a(m);
-    string b;
+    vector<bitset<100>> a(m);
+    bitset<100> b;
     cin >> b;
     for(auto & i : a) cin >> i;
-    vector<int> chk(2 * n + 1, 0);
+    vector<int> chk(2 * n + 1, 0), v;
     vector<vector<int>> ans(2 * n + 1);
-    function<void(int, string, vector<int>&)>
-    bt = [&](int r, string s, vector<int>& v) {
-        int time = 0;
-        for(char c : s) time += c == '1' ? 1 : -1;
-        if (!chk[time + n]) {
-            chk[time + n] = 1;
-            ans[time + n] = v;
+    function<void(int, bitset<100>&, vector<int>&)>
+    bt = [&](int r, bitset<100>& s, vector<int>& v) {
+        if (r == m) {
+            int time = 0;
+            for(int i =0; i<n; ++i) time += s[i] ? 1 : -1;
+            if (!chk[time + n]) {
+                chk[time + n] = 1;
+                ans[time + n] = v;
+            }
+            return;
         }
-        if (r >= m) return;
 
         bt(r + 1, s, v);
-        for(int i =0; i<n; ++i) s[i] = (s[i] == a[r][i] ? '0' : '1');
+        s ^= a[r];
         v.push_back(r + 1);
         bt(r + 1, s, v);
+        s ^= a[r];
         v.pop_back();
     };
-    vector<int> v;
     bt(0, b, v);
     for(int i =0; i<2*n+1; ++i) {
         if (ans[i].empty()) cout << (chk[i] ? "0\n" : "-1\n");
