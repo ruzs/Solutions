@@ -17,6 +17,8 @@ int main() {
     }
     vector<int> sz(n);
     vector<int> exc(n);
+    vector<int> md(1000001, 1e9);
+    queue<int> q;
     int ans = 1e9;
     function<int(int, int)> tree_size = [&](int u, int p) {
         sz[u] = 1;
@@ -37,26 +39,30 @@ int main() {
         int ts = tree_size(u, -1);
         int ct = centroid(u, -1, ts / 2);
         exc[ct] = 1;
-        map<int, int> mp = {{0, 0}}, q;
+        while(q.size()) md[q.front()] = 1e9, q.pop();
+        md[0] = 0;
         function<void(int, int, int, int)>
-        dfs = [&](int u, int p, int l, int d) {
+        compute = [&](int u, int p, int l, int d) {
             if (l > k) return;
-            if (mp.count(k - l)) ans = min(ans, mp[k - l] + d);
-            if (q.count(l)) q[l] = min(q[l], d);
-            else q[l] = d;
+            if (md[k - l] < 1e9) ans = min(ans, md[k - l] + d);
             for(auto & [v, w] : g[u]) {
                 if (v == p || exc[v]) continue;
-                dfs(v, u, l + w, d + 1);
+                compute(v, u, l + w, d + 1);
+            }
+        },
+        update = [&](int u, int p, int l, int d) {
+            if (l > k) return;
+            md[l] = min(md[l], d);
+            q.push(l);
+            for(auto & [v, w] : g[u]) {
+                if (v == p || exc[v]) continue;
+                update(v, u, l + w, d + 1);
             }
         };
         for(auto & [v, w] : g[ct]) {
             if (exc[v]) continue;
-            dfs(v, ct, w, 1);
-            for(auto & i : q) {
-                if (mp.count(i.first)) mp[i.first] = min(mp[i.first], i.second);
-                else mp[i.first] = i.second;
-            }
-            q.clear();
+            compute(v, ct, w, 1);
+            update(v, ct, w, 1);
         }
         for(auto & [v, w] : g[ct]) {
             if (exc[v]) continue;
